@@ -36,7 +36,7 @@ export default {
 @import '../style/_colors.scss';
 
     .album-container {
-        flex-basis: calc((100% / 5) - 24px); //TODO: da sistemare
+        flex-basis: calc((100% / 5) - 24px);
         margin-bottom: 24px;
         margin-left: 12px;
         margin-right: 12px;
@@ -57,15 +57,16 @@ export default {
             }
 
             .title-album {
+                width: 150px;
                 color: $title-color;
                 padding: 24px 6px;
                 font-weight: bold;
-                font-size: 18px;
+                font-size: 22px;
             }
 
             .info-album {
                 color: $text-color;
-                font-size: 16px;
+                font-size: 18px;
             }
         }
     }
