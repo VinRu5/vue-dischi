@@ -1,7 +1,17 @@
 <template>
-    <div>
-        <Album />
-    </div>
+    <main>
+        <div class="container">
+            <div class="row-me">
+                <Album v-for="(album, index) in albums" :key="index" 
+                    :urlImg="album.poster"
+                    :title="album.title"
+                    :artist="album.author"
+                    :year="album.year"
+                    
+                />
+            </div>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -11,10 +21,27 @@ export default {
     name: 'Main',
     components: {
         Album
+    },
+    props: {
+        albums: Array
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../style/_colors.scss';
 
+    main {
+        background-color: $back-color;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .container {
+
+            .row-me {
+                display: flex;    
+                flex-wrap: wrap;
+            }
+        }
+    }
 </style>
