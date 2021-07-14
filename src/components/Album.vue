@@ -4,7 +4,7 @@
             <div class="img-container">
                 <img :src="urlImg" :alt="`${title} di ${artist}`">
             </div>
-            <h3 class="title-album">{{ title }}</h3>
+            <h3 class="title-album">{{ upperTitle }}</h3>
             <div class="info-album">
                 <div class="artist">{{ artist }}</div>
                 <div class="yaer">{{ year }}</div>
@@ -23,6 +23,11 @@ export default {
         title: String,
         artist: String,
         year: String,
+    },
+    computed: {
+        upperTitle: function() {
+            return this.title.toUpperCase();
+        }
     }
 }
 </script>
@@ -54,11 +59,13 @@ export default {
             .title-album {
                 color: $title-color;
                 padding: 24px 6px;
+                font-weight: bold;
+                font-size: 18px;
             }
 
             .info-album {
                 color: $text-color;
-                font-size: 22px;
+                font-size: 16px;
             }
         }
     }
