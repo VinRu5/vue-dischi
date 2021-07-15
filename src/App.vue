@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Loading v-if="albums.length < 0" />
-    <Header @choice="choiceGenre" />
+    <Header @choice="choiceGenre" @search="choiceGenre" :optionGenre="genres" />
     <Main :albums="filterAlbums" />
 
   </div>
@@ -25,6 +25,13 @@ export default {
     return {
       albums: [],
       userChoice: '',
+      genres: [
+        {
+          id: 0,
+          text:'All',
+          value: 'all'
+        }
+      ]
     }
   },
   computed: {
@@ -35,18 +42,43 @@ export default {
           return true;
         }
 
-        return album.genre.includes(this.userChoice);
+        return album.genre.toLowerCase().includes(this.userChoice.toLowerCase()) ||
+          album.author.toLowerCase().includes(this.userChoice.toLowerCase()) ||
+          album.title.toLowerCase().includes(this.userChoice.toLowerCase());
       })
-    }
+    },
   },
   created() {
+    console.log(typeof this.genres);
     axios.get('https://flynn.boolean.careers/exercises/api/array/music').then((res) => {
       this.albums = res.data.response;
+      this.genresCreate();
     });
   },
   methods: {
     choiceGenre(select) {
       this.userChoice = select;
+    },
+    genresCreate() {
+      let genresList = [];
+
+      let x = 1;
+      this.albums.forEach((album) => {
+        
+        if (typeof genresList === 'undefined' ||
+          !genresList.includes(album.genre)) {
+
+          genresList.push(album.genre);
+          this.genres.push(
+            {
+              id: x,
+              text: album.genre,
+              value: album.genre.toLowerCase()
+            }
+          );
+          x++;
+        }
+      });
     }
   }
 }

@@ -9,6 +9,7 @@
                     :year="album.year"
                 />
             </div>
+            <div v-if="albums.length === 0" class="text-searched">La ricerca non ha prodotto risultati</div>
         </div>
     </main>
 </template>
@@ -40,6 +41,13 @@ export default {
             .row-me {
                 display: flex;    
                 flex-wrap: wrap;
+            }
+
+            .text-searched {
+                color: $title-color;
+                font-size: 32px;
+                text-align: center;
+                font-weight: 600;
             }
         }
     }
