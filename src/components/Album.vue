@@ -37,6 +37,7 @@ export default {
 
     .album-container {
         flex-basis: calc((100% / 5) - 24px);
+        max-width: calc((100% / 5) - 24px);
         margin-bottom: 24px;
         margin-left: 12px;
         margin-right: 12px;
@@ -57,11 +58,11 @@ export default {
             }
 
             .title-album {
-                width: 150px;
+                //width: 150px;
                 color: $title-color;
-                padding: 24px 6px;
+                padding: 24px 3px;
                 font-weight: bold;
-                font-size: 22px;
+                font-size: 20px;
             }
 
             .info-album {
